@@ -69,6 +69,20 @@ button {
   font-weight: 700;
 }
 
+button.secondary {
+  width: auto;
+  background: #17363c;
+  border: 1px solid #2f666f;
+  color: #bde2e7;
+  padding: 8px 12px;
+}
+
+.resultHead {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
 pre {
   margin: 0;
   min-height: 180px;

@@ -18,6 +18,14 @@
         <label>API URL</label>
         <input id="apiUrl" value="http://localhost:8010" />
 
+        <label>Quick Demo Template</label>
+        <select id="templateSelect">
+          <option value="">Choose sample input</option>
+          <option value="python_none">Python NoneType crash</option>
+          <option value="js_undefined">JavaScript undefined access</option>
+          <option value="timeout_retry">Timeout without retry</option>
+        </select>
+
         <label>Language</label>
         <select id="language">
           <option value="python" selected>Python</option>
@@ -48,7 +56,10 @@
       </section>
 
       <section class="card">
-        <h2>Result</h2>
+        <div class="resultHead">
+          <h2>Result</h2>
+          <button id="copyBtn" class="secondary">Copy Output</button>
+        </div>
         <pre id="output">Results appear here.</pre>
       </section>
     </main>

@@ -1,4 +1,21 @@
 const output = document.getElementById("output");
+const templates = {
+  python_none: {
+    language: "python",
+    error_log: "Traceback (most recent call last):\n  File \"app.py\", line 14, in run\n    result = process(data)\nTypeError: 'NoneType' object is not subscriptable",
+    code: "def process(data):\n    return data['id']\n\ndef run(data):\n    result = process(data)\n    return result",
+  },
+  js_undefined: {
+    language: "javascript",
+    error_log: "TypeError: Cannot read properties of undefined (reading 'id')\n    at getUserId (index.js:5:18)",
+    code: "function getUserId(user) {\n  return user.profile.id;\n}\n\nmodule.exports = { getUserId };",
+  },
+  timeout_retry: {
+    language: "python",
+    error_log: "Request failed after 1 attempt: timeout=5s\nServiceUnavailableError",
+    code: "import requests\n\ndef fetch(url):\n    resp = requests.get(url, timeout=5)\n    resp.raise_for_status()\n    return resp.json()",
+  },
+};
 
 async function post(path, payload) {
   const apiUrl = document.getElementById("apiUrl").value.trim();
@@ -24,6 +41,30 @@ function collect() {
     strategy: document.getElementById("strategy").value,
   };
 }
+
+document.getElementById("templateSelect").addEventListener("change", (event) => {
+  const key = event.target.value;
+  if (!key || !templates[key]) {
+    return;
+  }
+  const sample = templates[key];
+  document.getElementById("language").value = sample.language;
+  document.getElementById("errorLog").value = sample.error_log;
+  document.getElementById("code").value = sample.code;
+});
+
+document.getElementById("copyBtn").addEventListener("click", async () => {
+  try {
+    await navigator.clipboard.writeText(output.textContent || "");
+    const prev = output.textContent;
+    output.textContent = "Copied current output to clipboard.";
+    setTimeout(() => {
+      output.textContent = prev;
+    }, 1000);
+  } catch {
+    output.textContent = "Clipboard access failed. Copy manually.";
+  }
+});
 
 document.getElementById("analyzeBtn").addEventListener("click", async () => {
   const data = collect();
