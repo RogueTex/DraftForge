@@ -36,6 +36,10 @@ Open `apps/studio/index.html` and point API URL to `http://localhost:8010`.
 - `POST /api/v1/analyze`
 - `POST /api/v1/repair`
 
-## Resume Bullet
+## AkashML Configuration
 
-Built a hackathon-winning AI code repair agent on AkashML with FastAPI-based inference orchestration, root-cause analysis, and patch generation workflows that transformed stack traces and broken snippets into actionable code fixes.
+Set these in `.env` to run with AkashML-hosted models:
+
+- `AKASH_BASE_URL`
+- `AKASH_API_KEY`
+- `AKASH_MODEL`
