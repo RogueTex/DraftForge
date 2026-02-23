@@ -1,0 +1,12 @@
+version: "3.9"
+services:
+  api:
+    image: python:3.11-slim
+    working_dir: /app
+    volumes:
+      - ./:/app
+    command: sh -c "pip install -r requirements.txt && uvicorn apps.api.main:app --host 0.0.0.0 --port 8010"
+    ports:
+      - "8010:8010"
+    env_file:
+      - .env

@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DraftForge Repair Agent</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <main class="wrap">
+      <header>
+        <p class="kicker">AkashML Hackathon Winner</p>
+        <h1>DraftForge Repair Agent</h1>
+        <p class="sub">Paste failing code + error logs, get root-cause analysis and patch suggestions.</p>
+      </header>
+
+      <section class="card">
+        <label>API URL</label>
+        <input id="apiUrl" value="http://localhost:8010" />
+
+        <label>Language</label>
+        <select id="language">
+          <option value="python" selected>Python</option>
+          <option value="javascript">JavaScript</option>
+          <option value="typescript">TypeScript</option>
+          <option value="go">Go</option>
+          <option value="java">Java</option>
+          <option value="other">Other</option>
+        </select>
+
+        <label>Error Log / Traceback</label>
+        <textarea id="errorLog" rows="6" placeholder="Paste stack trace or error output"></textarea>
+
+        <label>Code</label>
+        <textarea id="code" rows="10" placeholder="Paste failing code snippet"></textarea>
+
+        <label>Repair Strategy</label>
+        <select id="strategy">
+          <option value="minimal_patch" selected>Minimal Patch</option>
+          <option value="safe_refactor">Safe Refactor</option>
+          <option value="performance_fix">Performance Fix</option>
+        </select>
+
+        <div class="row">
+          <button id="analyzeBtn">Analyze</button>
+          <button id="repairBtn">Generate Patch</button>
+        </div>
+      </section>
+
+      <section class="card">
+        <h2>Result</h2>
+        <pre id="output">Results appear here.</pre>
+      </section>
+    </main>
+
+    <script src="./app.js"></script>
+  </body>
+</html>
